@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 // Route pour récupérer un logement par ID
 router.get('/:id', async (req, res, next) => {
   try {
-    const logement = await Logement.findById(req.params.id);
+    const logement = await Logement.findById(req.params.id).populate('bailleur');
     if (!logement) {
       return res.status(404).json({ error: 'Logement not found' });
     }
