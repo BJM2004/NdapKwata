@@ -1,0 +1,45 @@
+/* AddLogement.css */
+.add-logement-form {
+    padding: 20px;
+    background-color: #f0f8ff; /* Couleur de fond bleue claire */
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .add-logement-form h1 {
+    text-align: center;
+    color: #0000ff; /* Couleur bleue pour le titre */
+  }
+  
+  .add-logement-form form {
+    display: flex;
+    flex-direction:column;
+  }
+  
+  .add-logement-form label {
+    margin-bottom: 5px;
+    color: #0000ff; /* Couleur bleue pour les labels */
+    margin-right: 10%;
+  }
+  
+  .add-logement-form input,
+  .add-logement-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #0000ff; /* Bordure bleue pour les inputs */
+    border-radius: 4px;
+  }
+  
+  .add-logement-form button {
+    padding: 10px;
+    background-color: #0000ff; /* Couleur bleue pour le bouton */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-logement-form button:hover {
+    background-color: #0000cc; /* Couleur bleue plus foncée au survol */
+  }
+  

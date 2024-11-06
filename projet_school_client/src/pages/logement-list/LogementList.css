@@ -1,0 +1,39 @@
+/* LogementList.css */
+.logement-list {
+    padding: 20px;
+    background-color: #f0f8ff; /* Couleur de fond bleue claire */
+  }
+  
+  .logement-list h1 {
+    text-align: center;
+    color: #0000ff; /* Couleur bleue pour le titre */
+  }
+  
+  .logement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .logement-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .logement-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .logement-card h2 {
+    color: #0000ff; /* Couleur bleue pour le titre */
+  }
+  
+  .logement-card p {
+    color: #333;
+  }
+  

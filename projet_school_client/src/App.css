@@ -1,0 +1,42 @@
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff; /* Couleur de fond bleue claire */
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: #0000ff; /* Couleur bleue pour la barre de navigation */
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  padding: 20px;
+}
