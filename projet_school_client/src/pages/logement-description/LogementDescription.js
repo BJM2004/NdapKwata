@@ -10,7 +10,7 @@ function LogementDetail() {
     // Fonction pour récupérer les données du logement
     const fetchLogement = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/logements/${id}`);
+        const response = await fetch(`http://localhost:5000/api/logement/${id}`);
         const text = await response.text(); // Lire la réponse comme du texte
         console.log('Réponse brute:', text); // Afficher la réponse brute
         const data = JSON.parse(text); // Parser la réponse en JSON
@@ -31,7 +31,7 @@ function LogementDetail() {
   return (
     <div className="logement-detail">
       <h1>{logement.title}</h1>
-      <img src={logement.image} alt={logement.title} />
+      <img src={`http://localhost:5000/uploads/${logement.image}`} alt={logement.title} />
       <p>{logement.description}</p>
       <p>Prix: {logement.price} €</p>
       <div className="bailleur-info">
@@ -40,7 +40,7 @@ function LogementDetail() {
         <p>Adresse: {logement.bailleur.adresse}</p>
         <p>Téléphone: {logement.bailleur.telephone}</p>
         <p>Email: {logement.bailleur.email}</p>
-        <img src={logement.bailleur.profile} alt={logement.bailleur.name} />
+        <img src={`http://localhost:5000/uploads/${logement.bailleur.profile}`} alt={logement.bailleur.name} />
       </div>
     </div>
   );

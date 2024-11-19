@@ -8,4 +8,5 @@ const logementSchema = new mongoose.Schema({
   bailleur: { type: mongoose.Schema.Types.ObjectId, ref: 'Bailleur', required: true },
 });
 
-module.exports = mongoose.model('Logement', logementSchema);
+const Logement = mongoose.model('Logement', logementSchema);
+module.exports=Logement;

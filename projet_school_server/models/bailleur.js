@@ -9,6 +9,7 @@ const bailleurSchema = new Schema({
   email: { type: String, required: true, unique: true },
   profile: { type: String },
   password: { type: String, required: true },
+  user:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true}
 });
 
 // Hacher le mot de passe avant de sauvegarder le bailleur

@@ -1,48 +1,120 @@
 /* LogementDescription.css */
-.logement-description {
-    padding: 20px;
-    background-color: #f0f8ff; /* Couleur de fond bleue claire */
-    max-width: 800px;
-    margin: 0 auto;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f6f9fc 0%, #e9ecef 100%);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.logement-detail {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logement-detail h1 {
+  font-size: 2.5rem;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.logement-detail > img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.logement-detail > img:hover {
+  transform: scale(1.02);
+}
+
+.logement-detail > p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+}
+
+.logement-detail p:nth-of-type(2) {
+  font-size: 1.4rem;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.bailleur-info {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 15px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.bailleur-info h2 {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.bailleur-info p {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin: 0.8rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.bailleur-info img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 1.5rem;
+  border: 3px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .logement-detail {
+      margin: 20px;
+      padding: 20px;
   }
-  
-  .logement-description h1 {
-    text-align: center;
-    color: #0000ff; /* Couleur bleue pour le titre */
+
+  .logement-detail h1 {
+      font-size: 2rem;
   }
-  
-  .logement-description img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
+
+  .logement-detail > img {
+      height: 300px;
   }
-  
-  .logement-description p {
-    color: #333;
-    margin-bottom: 10px;
+
+  .bailleur-info {
+      padding: 1.5rem;
   }
-  
-  .bailleur-profile {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+  .logement-detail > img {
+      height: 250px;
   }
-  
-  .bailleur-profile h2 {
-    color: #0000ff; /* Couleur bleue pour le titre */
+
+  .logement-detail h1 {
+      font-size: 1.8rem;
   }
-  
-  .bailleur-profile p {
-    color: #333;
-  }
-  
-  .bailleur-profile img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-top: 10px;
-  }
-  
+}

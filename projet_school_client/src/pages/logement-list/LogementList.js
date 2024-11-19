@@ -10,7 +10,7 @@ function LogementList() {
     // Fonction pour récupérer les données des logements
     const fetchLogements = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/logements');
+        const response = await fetch('http://localhost:5000/api/logement');
         const text = await response.text(); // Lire la réponse comme du texte
         console.log('Réponse brute:', text); // Afficher la réponse brute
         const data = JSON.parse(text); // Parser la réponse en JSON
@@ -34,7 +34,10 @@ function LogementList() {
         logements.map(logement => (
           <div key={logement._id} className="logement-card">
             <Link to={`/logement/${logement._id}`}>
-              <img src={logement.image} alt={logement.title} />
+              <img 
+                  src={`http://localhost:5000/uploads/${logement.image}`} 
+                  alt={logement.title}
+              />
             </Link>
             <h2>{logement.title}</h2>
             <p>{logement.description}</p>

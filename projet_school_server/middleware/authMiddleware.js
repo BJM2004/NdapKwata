@@ -1,17 +1,50 @@
 const jwt = require('jsonwebtoken');
 
-const authMiddleware = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
 
-  if (token == null) return res.sendStatus(401);
+    if (!token) {
+        return res.status(401).json({ message: 'Token d\'autorisation manquant' });
+    }
 
-  jwt.verify(token, 'your_jwt_secret', (err, user) => {
-    if (err) return res.sendStatus(403);
+    jwt.verify(token, 'your-secret-key', (err, user) => {
+        if (err) {
+            return res.status(403).json({ message: 'Token invalide' });
+        }
+        req.user = user;
+        next();
+    });
+}
 
-    req.user = user; // Ajoutez l'utilisateur décodé à l'objet req
-    next();
-  });
-};
+// projet_school_server/middleware/authMiddleware.js
 
-module.exports = authMiddleware;
+function authorizeBailleur(req, res, next) {
+    const token = req.headers.authorization?.split(' ')[1];
+    
+    if (!token) {
+        return res.status(401).json({ message: 'Token manquant' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, 'your-secret-key');
+        console.log("Token décodé dans authorizeBailleur:", decoded);
+
+        // Vérifier uniquement la présence de bailleurId
+        if (!decoded.bailleurId) {
+            console.log("BailleurId manquant dans le token");
+            return res.status(403).json({ message: 'Accès refusé. ID bailleur manquant.' });
+        }
+
+        // Stocker l'ID du bailleur dans req pour utilisation ultérieure
+        req.user = decoded;
+        req.bailleurId = decoded.bailleurId;
+        console.log("Autorisation accordée pour le bailleur:", decoded.bailleurId);
+        next();
+    } catch (error) {
+        console.error("Erreur de vérification du token:", error);
+        return res.status(401).json({ message: 'Token invalide' });
+    }
+}
+
+module.exports = { authenticateToken, authorizeBailleur };

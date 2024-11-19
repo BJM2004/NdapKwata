@@ -1,45 +1,96 @@
 /* AddLogement.css */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
 .add-logement-form {
-    padding: 20px;
-    background-color: #f0f8ff; /* Couleur de fond bleue claire */
-    max-width: 900px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 2.5rem;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.add-logement-form h1 {
+  text-align: center;
+  color: #1a73e8;
+  font-size: 28px;
+  margin-bottom: 2rem;
+}
+
+.add-logement-form form > div {
+  margin-bottom: 1.5rem;
+}
+
+.add-logement-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #5f6368;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.add-logement-form input,
+.add-logement-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.add-logement-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.add-logement-form input:focus,
+.add-logement-form textarea:focus {
+  border-color: #1a73e8;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+}
+
+.add-logement-form button {
+  width: 100%;
+  padding: 12px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.add-logement-form button:hover {
+  background: #1557b0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(26, 115, 232, 0.2);
+}
+
+.add-logement-form button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+  .add-logement-form {
+      margin: 20px;
+      padding: 1.5rem;
   }
-  
-  .add-logement-form h1 {
-    text-align: center;
-    color: #0000ff; /* Couleur bleue pour le titre */
-  }
-  
-  .add-logement-form form {
-    display: flex;
-    flex-direction:column;
-  }
-  
-  .add-logement-form label {
-    margin-bottom: 5px;
-    color: #0000ff; /* Couleur bleue pour les labels */
-    margin-right: 10%;
-  }
-  
-  .add-logement-form input,
-  .add-logement-form textarea {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #0000ff; /* Bordure bleue pour les inputs */
-    border-radius: 4px;
-  }
-  
-  .add-logement-form button {
-    padding: 10px;
-    background-color: #0000ff; /* Couleur bleue pour le bouton */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-logement-form button:hover {
-    background-color: #0000cc; /* Couleur bleue plus foncée au survol */
-  }
-  
+}
