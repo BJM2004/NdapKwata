@@ -3,7 +3,7 @@ async function findAll(){
     return await Logement.find();
 }
 async function find(LogementId){
-    return await Logement.findById(LogementId);
+    return await Logement.findById(LogementId).populate('bailleur');
 }
 async function findBailleurLogement(BailleurId){
     return await Logement.find({Bailleur:BailleurId});

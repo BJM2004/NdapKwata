@@ -26,7 +26,7 @@ async function read(req, res) {
 
 async function create(req, res) {
     const data = req.body;
-    const profile = req.file ? req.file.path : null; // Récupérer le chemin du fichier téléchargé
+    const profile = req.file ? req.file.filename : null; // Récupérer le chemin du fichier téléchargé
     data.profile = profile;
 
     // Extraire l'ID de l'utilisateur à partir du token JWT

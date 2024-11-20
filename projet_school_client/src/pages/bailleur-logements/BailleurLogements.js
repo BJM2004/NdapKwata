@@ -10,7 +10,7 @@ function BailleurLogements() {
 
   useEffect(() => {
     // Récupérer le jeton JWT depuis le localStorage
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('tokenBailleur');
     if (token) {
       // Décoder le jeton JWT pour obtenir l'ID et le nom du bailleur
       const decodedToken = jwtDecode(token);
@@ -24,8 +24,8 @@ function BailleurLogements() {
     // Fonction pour récupérer les données des logements du bailleur
     const fetchLogements = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/logements/bailleur/${bailleurId}`, {
+        const token = localStorage.getItem('tokenBailleur');
+        const response = await axios.get(`http://localhost:5000/api/logement/${bailleurId}/logements`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
