@@ -27,13 +27,12 @@ async function read(req, res) {
 async function listByBailleur(req, res) {
     const bailleurId = req.params.bailleurId;
     try {
-        const logements = await logementService.findByBailleur(bailleurId);
+        const logements = await logementService.findBailleurLogement(bailleurId);
         res.status(200).json(logements);
     } catch (err) {
         res.status(500).json({ message: "Erreur lors de la récupération des logements du bailleur", error: err });
     }
 }
-
 async function create(req, res) {
     const data = req.body;
     const image = req.file ? req.file.filename : null;

@@ -11,6 +11,8 @@ router.get("/:id", bailleurController.read);
 
 // Créer un bailleur
 router.post("/register", upload.single('profile'), bailleurController.create);
+// Connexion d'un bailleur
+router.post("/login", bailleurController.login);
 // Modifier un bailleur
 router.put("/:id", bailleurController.update);
 

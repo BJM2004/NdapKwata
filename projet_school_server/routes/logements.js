@@ -1,6 +1,6 @@
 const express = require('express');
 const logementController = require('../controller/logement');
-const { authenticateToken, authorizeBailleur } = require('../middleware/authMiddleware');
+const authMiddleware = require('../middleware/authMiddleware');
 const upload = require('../middleware/upload');
 
 const router = express.Router();
@@ -12,7 +12,7 @@ router.get('/', logementController.list);
 router.get('/:id', logementController.read);
 
 // Créer un logement
-router.post('/add',  authorizeBailleur, upload.single('image'), logementController.create);
+router.post('/add',  authMiddleware.authorizeBailleur, upload.single('image'), logementController.create);
 
 // Modifier un logement
 router.put('/:id', logementController.update);

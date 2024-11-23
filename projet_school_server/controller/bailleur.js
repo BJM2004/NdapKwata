@@ -51,8 +51,21 @@ async function create(req, res) {
         res.status(500).json({ message: "Erreur lors de la création du bailleur", error: err });
     }
 }
-
-async function update(req, res) {
+async function login(req, res) {
+  const { email, password } = req.body;
+  console.log('Email:', email); // Debug
+  console.log('Password:', password); // Debug
+  try {
+    const { bailleur, token } = await bailleurService.login(email, password);
+    if (bailleur && token) {
+      res.status(200).json({ message: "Connexion réussie", token });
+    } else {
+      res.status(400).json({ message: 'Erreur lors de la connexion' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Erreur lors de la connexion", error: err });
+  }
+}async function update(req, res) {
   const bailleurId = req.params.id;
   try {
     const data = req.body;
@@ -94,6 +107,7 @@ module.exports = {
   list,
   read,
   create,
+  login,
   update,
   remove,
   logout

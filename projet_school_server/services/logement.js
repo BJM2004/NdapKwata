@@ -5,10 +5,9 @@ async function findAll(){
 async function find(LogementId){
     return await Logement.findById(LogementId).populate('bailleur');
 }
-async function findBailleurLogement(BailleurId){
-    return await Logement.find({Bailleur:BailleurId});
-}
-async function create(data){
+async function findBailleurLogement(bailleurId){
+    return await Logement.find({bailleur: bailleurId}).populate('bailleur');
+}async function create(data){
     const logement=new Logement(data);
     return await logement.save();
 }

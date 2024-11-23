@@ -30,7 +30,26 @@ async function create(data) {
     return { message: 'Erreur lors de la création de l\'utilisateur', error };
   }
 }
+async function login(email, password) {
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return { message: 'Utilisateur non trouvé' };
+    }
 
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return { message: 'Mot de passe incorrect' };
+    }
+
+    // Générer un token JWT
+    const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
+
+    return { user, token };
+  } catch (error) {
+    return { message: 'Erreur lors de la connexion', error };
+  }
+}
 async function update(userId, data) {
   return await User.findByIdAndUpdate(userId, data, { new: true });
 }
@@ -44,5 +63,6 @@ module.exports = {
   find,
   create,
   update,
-  remove
+  remove,
+  login
 };

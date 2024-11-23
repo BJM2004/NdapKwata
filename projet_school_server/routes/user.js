@@ -2,24 +2,26 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controller/user");
-const { authenticateToken } = require("../middleware/authMiddleware");
+const  authMiddleware  = require("../middleware/authMiddleware");
 
 // Afficher tous les utilisateurs
-router.get('/', authenticateToken, userController.list);
+router.get('/', authMiddleware.authenticateToken, userController.list);
 
 // Afficher un utilisateur en particulier
-router.get("/:id", authenticateToken, userController.read);
+router.get("/:id", authMiddleware.authenticateToken, userController.read);
 
 // Se déconnecter
 router.post('/logout', userController.logout);
 
 // Créer un utilisateur (login)
-router.post("/login", userController.create);
+router.post("/register", userController.create);
+// Connexion d'un utilisateur
+router.post("/login", userController.login);
 
 // Modifier un utilisateur
-router.put("/:id", authenticateToken, userController.update);
+router.put("/:id", authMiddleware.authenticateToken, userController.update);
 
 // Supprimer un utilisateur
-router.delete("/:id", authenticateToken, userController.remove);
+router.delete("/:id", authMiddleware.authenticateToken, userController.remove);
 
 module.exports = router;

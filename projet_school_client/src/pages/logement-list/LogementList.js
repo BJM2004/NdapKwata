@@ -23,6 +23,7 @@ function LogementList() {
 
     fetchLogements();
   }, []);
+  
 
   return (
     <div className="logement-list">
@@ -41,7 +42,7 @@ function LogementList() {
             </Link>
             <h2>{logement.title}</h2>
             <p>{logement.description}</p>
-            <p>Prix: {logement.price} €</p>
+            <p>Prix: {logement.price} FCFA</p>
           </div>
         ))}
       </div>

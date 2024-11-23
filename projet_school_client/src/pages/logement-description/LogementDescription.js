@@ -33,7 +33,7 @@ function LogementDetail() {
       <h1>{logement.title}</h1>
       <img src={`http://localhost:5000/uploads/${logement.image}`} alt={logement.title} />
       <p>{logement.description}</p>
-      <p>Prix: {logement.price} €</p>
+      <p>Prix: {logement.price} FCFA</p>
       <div className="bailleur-info">
         <h2>Bailleur</h2>
         <p>Nom: {logement.bailleur.name}</p>

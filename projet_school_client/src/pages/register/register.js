@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './login.css'; // Importez le fichier CSS
+import './register.css'; // Importez le fichier CSS
 
-function LoginPage() {
+function RegisterPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState(''); // Ajout d'un champ email si nécessaire
@@ -12,7 +12,7 @@ function LoginPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/api/user/login', {
+            const response = await fetch('http://127.0.0.1:5000/api/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,4 +76,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default RegisterPage;

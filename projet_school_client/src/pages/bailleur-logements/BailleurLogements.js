@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode'; // Corrigez l'importation
 import './BailleurLogements.css'; // Importez le fichier CSS
 
 function BailleurLogements() {
@@ -9,17 +10,31 @@ function BailleurLogements() {
   const [logements, setLogements] = useState([]);
 
   useEffect(() => {
-    // Récupérer le jeton JWT depuis le localStorage
     const token = localStorage.getItem('tokenBailleur');
     if (token) {
-      // Décoder le jeton JWT pour obtenir l'ID et le nom du bailleur
       const decodedToken = jwtDecode(token);
-      console.log('Decoded Token:', decodedToken); // Ajoutez cette ligne pour déboguer
-      setBailleurId(decodedToken.id);
-      setBailleurName(decodedToken.name);
+      console.log('Decoded Token:', decodedToken);
+      
+      if (decodedToken.bailleurId) {
+        console.log('Avant setBailleurId:', bailleurId);
+        setBailleurId(prevId => {
+          console.log('Setting new bailleurId:', decodedToken.bailleurId);
+          return decodedToken.bailleurId;
+        });
+        setBailleurName(decodedToken.name);
+        
+        // Vérifier la mise à jour
+        setTimeout(() => {
+          console.log('Après setBailleurId:', bailleurId);
+        }, 0);
+      }
     }
-  }, []);
+  }, [bailleurId]);
 
+  // Ajouter un useEffect pour surveiller les changements de bailleurId
+  useEffect(() => {
+    console.log('bailleurId a changé:', bailleurId);
+  }, [bailleurId]);
   useEffect(() => {
     // Fonction pour récupérer les données des logements du bailleur
     const fetchLogements = async () => {
@@ -45,20 +60,22 @@ function BailleurLogements() {
 
   return (
     <div className="bailleur-logements">
-      <h1>Mes logements en vente {bailleurName}</h1>
-      <div className="logement-grid">
-        {logements.length === 0 ? (
-          <p>Aucun logement trouvé.</p>
-        ) : (
-          logements.map(logement => (
-            <div key={logement._id} className="logement-card">
-              <img src={logement.image} alt={logement.title} />
-              <h2>{logement.title}</h2>
-              <p>{logement.description}</p>
-              <p>Prix: {logement.price} €</p>
-            </div>
-          ))
-        )}
+      <h1>Voyez ici la liste de tous vos logements {bailleurName}</h1>
+      <div className="logements-list">
+        {logements.map(logement => (
+          <div key={logement._id} className="logement-card">
+            <Link to={`/logement/${logement._id}`}>
+              <img 
+                  src={`http://localhost:5000/uploads/${logement.image}`} 
+                  alt={logement.title}
+              />
+            </Link>
+            <h2>{logement.title}</h2>
+            
+            <p>{logement.description}</p>
+            <p>Prix: {logement.price} €</p>
+          </div>
+        ))}
       </div>
     </div>
   );
